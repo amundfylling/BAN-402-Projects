@@ -1,0 +1,7 @@
+reset;
+model Proj2.3D.mod;
+data Proj2.3D.dat;
+option solver gurobi;
+solve;
+display sum{d in D, h in H: d>0 and h>0}x[d,h] > results3.txt; # Total kwh charged
+display cost, x, y, G, z, u, l > results3.txt;

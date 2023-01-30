@@ -1,0 +1,6 @@
+reset;
+model AppendixD.mod;
+data AppendixD.dat;
+option solver cplex;
+solve;
+display total_budget, B_Electric, B_Conventional,x, k> results.txt;

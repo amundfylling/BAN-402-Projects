@@ -1,0 +1,229 @@
+total_profit = 1384470
+
+:           x        y      :=
+C1 G1       0         .
+C1 G2    4625         .
+C1 G3    8375         .
+C1 G4    5714.29      .
+C1 G5    1542.86      .
+C2 G1   10200         .
+C2 G2    4625         .
+C2 G3     175         .
+C2 G4       0         .
+C2 G5       0         .
+C3 G1       0         .
+C3 G2       0         .
+C3 G3       0         .
+C3 G4       0         .
+C3 G5    1542.86      .
+C4 G1       0         .
+C4 G2       0         .
+C4 G3       0         .
+C4 G4    2285.71      .
+C4 G5     914.286     .
+G1 M1       .       2700
+G1 M2       .       2500
+G1 M3       .       5000
+G2 M1       .       3000
+G2 M2       .       2000
+G2 M3       .       4250
+G3 M1       .       1500
+G3 M2       .       1000
+G3 M3       .       6050
+G4 M1       .       2000
+G4 M2       .       2000
+G4 M3       .       4000
+G5 M1       .       1000
+G5 M2       .       1000
+G5 M3       .       2000
+;
+
+:  max_purchase.body max_purchase.ub max_purchase.slack    :=
+C1      20257.1            25000           4742.86
+C2      15000              15000              0
+C3       1542.86            1800            257.143
+C4       3200               3200              0
+;
+
+timecap.body = 520
+timecap.ub = 520
+timecap.slack = 0
+
+:  continuity.body continuity.ub continuity.slack    :=
+G1         0              0              0
+G2         0              0              0
+G3         0              0              0
+G4         0              0              0
+G5         0              0              0
+;
+
+:     demand_req.body demand_req.ub demand_req.slack    :=
+G1 M1       2700         Infinity             0
+G1 M2       2500         Infinity             0
+G1 M3       5000         Infinity             0
+G2 M1       3000         Infinity             0
+G2 M2       2000         Infinity             0
+G2 M3       4250         Infinity             0
+G3 M1       1500         Infinity             0
+G3 M2       1000         Infinity             0
+G3 M3       6050         Infinity          3050
+G4 M1       2000         Infinity             0
+G4 M2       2000         Infinity             0
+G4 M3       4000         Infinity             0
+G5 M1       1000         Infinity             0
+G5 M2       1000         Infinity             0
+G5 M3       2000         Infinity             0
+;
+
+:  octane_comp.body octane_comp.ub octane_comp.slack    :=
+G1      20400           Infinity        20400
+G2      18500           Infinity        18500
+G3      16400           Infinity        16400
+G4       4571.43        Infinity         4571.43
+G5          0           Infinity            0
+;
+
+:  sulfur_comp.body sulfur_comp.ub sulfur_comp.slack    :=
+G1       0                 0             0
+G2       0                 0             0
+G3     -15.35              0            15.35
+G4       0                 0             0
+G5      -0.285714          0             0.285714
+;
+
+:  max_purchase max_purchase.down max_purchase.current max_purchase.up    :=
+C1       0           20257.1              25000            1e+20
+C2       5           14825                15000            16535
+C3       0            1542.86              1800            1e+20
+C4       0            3085.71              3200             6285.71
+;
+
+timecap = 4000
+timecap.down = 489.5
+timecap.current = 520
+timecap.up = 567.429
+
+:  continuity continuity.down continuity.current continuity.up    :=
+G1    -85         -226.667             0              0
+G2    -85         -175                 0           1279.17
+G3    -85         -178.261             0           1279.17
+G4   -132.143      -47.1976            0             80
+G5    110          -10.9422            0              1.28991
+;
+
+:     demand_req demand_req.down demand_req.current demand_req.up    :=
+G1 M1   -13             781.25           2700           2875
+G1 M2   -16             581.25           2500           2675
+G1 M3   -11            3081.25           5000           5175
+G2 M1   -16               0              3000           3350
+G2 M2   -11               0              2000           2350
+G2 M3    -6               0              4250           4600
+G3 M1   -15               0              1500           4550
+G3 M2    -5               0              1000           4050
+G3 M3     0          -1e+20              3000           6050
+G4 M1   -48.4286          0              2000           2400
+G4 M2   -43.4286          0              2000           2400
+G4 M3   -38.4286          0              4000           4400
+G5 M1   -48               0              1000           1514.29
+G5 M2   -46               0              1000           1514.29
+G5 M3   -43               0              2000           2514.29
+;
+
+:  octane_comp octane_comp.down octane_comp.current octane_comp.up    :=
+G1      0          -1e+20                 0             20400
+G2      0          -1e+20                 0             18500
+G3      0          -1e+20                 0             16400
+G4      0          -1e+20                 0              4571.43
+G5     -2.5          -126.984             0              1028.57
+;
+
+:  sulfur_comp sulfur_comp.down sulfur_comp.current sulfur_comp.up    :=
+G1      0            0                    0             1e+20
+G2      0          -15.35                 0                 1.75
+G3      0          -15.35                 0             1e+20
+G4    714.286       -0.8                  0                16
+G5      0           -0.285714             0             1e+20
+;
+
+:         x.down    x.current     x.up      :=
+C1 G1   -1e+20          -45     -45
+C1 G2      -47.9412     -45     -45
+C1 G3      -45          -45     -40
+C1 G4      -47.9412     -45     -32.5
+C1 G5      -50          -45     -45
+C2 G1      -40          -40     -29
+C2 G2      -40          -40     -32.8571
+C2 G3      -45          -40     -40
+C2 G4   -1e+20          -40     -32.8571
+C2 G5   -1e+20          -40     -30
+C3 G1   -1e+20          -55     -45
+C3 G2   -1e+20          -55     -45
+C3 G3   -1e+20          -55     -45
+C3 G4   -1e+20          -55     -51.4286
+C3 G5      -60.5556     -55     -55
+C4 G1   -1e+20          -50     -45
+C4 G2   -1e+20          -50     -45
+C4 G3   -1e+20          -50     -45
+C4 G4      -52.7778     -50     -45
+C4 G5      -50          -50     -47.2222
+;
+
+:       y.down y.current     y.up       :=
+G1 M1   -1e+20     72         85
+G1 M2   -1e+20     69         85
+G1 M3   -1e+20     74         85
+G2 M1   -1e+20     69         85
+G2 M2   -1e+20     74         85
+G2 M3   -1e+20     79         85
+G3 M1   -1e+20     70         85
+G3 M2   -1e+20     80         85
+G3 M3       80     85      1e+20
+G4 M1   -1e+20     78        126.429
+G4 M2   -1e+20     83        126.429
+G4 M3   -1e+20     88        126.429
+G5 M1   -1e+20     82        130
+G5 M2   -1e+20     84        130
+G5 M3   -1e+20     87        130
+;
+
+x.rc :=
+C1 G1     0
+C1 G2     0
+C1 G3     0
+C1 G4    -4.44089e-15
+C1 G5     0
+C2 G1     0
+C2 G2     0
+C2 G3     0
+C2 G4    -7.14286
+C2 G5   -10
+C3 G1   -10
+C3 G2   -10
+C3 G3   -10
+C3 G4    -3.57143
+C3 G5     0
+C4 G1    -5
+C4 G2    -5
+C4 G3    -5
+C4 G4    -4.44089e-15
+C4 G5     0
+;
+
+y.rc :=
+G1 M1   0
+G1 M2   0
+G1 M3   0
+G2 M1   0
+G2 M2   0
+G2 M3   0
+G3 M1   0
+G3 M2   0
+G3 M3   0
+G4 M1   6.21725e-15
+G4 M2   6.21725e-15
+G4 M3   6.21725e-15
+G5 M1   0
+G5 M2   0
+G5 M3   0
+;
+

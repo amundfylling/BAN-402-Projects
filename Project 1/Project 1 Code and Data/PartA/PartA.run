@@ -1,0 +1,18 @@
+# Run file for Part A
+reset;
+model PartA.mod;
+data PartA.dat;
+option solver cplex;
+option presolve 0;
+solve;
+option cplex_options 'sensitivity';
+solve;
+display total_cost, x > PartA_solution.txt;
+# Slack variables
+display restriction.body,restriction.ub,restriction.slack  > PartA_solution.txt;
+# Shadow price
+display restriction,restriction.down,restriction.current,restriction.up  > PartA_solution.txt;
+#Allowable range
+display x.down,x.current,x.up  > PartA_solution.txt;
+#Reduced costs
+display x.rc  > PartA_solution.txt;

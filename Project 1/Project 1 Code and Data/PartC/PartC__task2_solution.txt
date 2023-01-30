@@ -1,0 +1,164 @@
+total_cost = 18438
+
+:         x    y    z     :=
+P2 K1     .     0    .
+P2 K10    .     0    .
+P2 K2     .    30    .
+P2 K3     .    40    .
+P2 K4     .     0    .
+P2 K5     .    15    .
+P2 K6     .    52    .
+P2 K7     .    42    .
+P2 K8     .    12    .
+P2 K9     .     0    .
+R1 K1     .     .   24
+R1 K10    .     .   40
+R1 K2     .     .    0
+R1 K3     .     .    0
+R1 K4     .     .    0
+R1 K5     .     .    0
+R1 K6     .     .    0
+R1 K7     .     .    0
+R1 K8     .     .    0
+R1 K9     .     .   20
+R1 P2     26    .    .
+R2 K1     .     .    0
+R2 K10    .     .    0
+R2 K2     .     .    0
+R2 K3     .     .    0
+R2 K4     .     .   35
+R2 K5     .     .    0
+R2 K6     .     .    0
+R2 K7     .     .    0
+R2 K8     .     .    0
+R2 K9     .     .    0
+R2 P2    165    .    .
+;
+
+:  continuity.body continuity.ub continuity.slack    :=
+P2         0              0              0
+;
+
+:   requirement.body requirement.ub requirement.slack    :=
+K1          24           Infinity            0
+K10         40           Infinity            0
+K2          30           Infinity            0
+K3          40           Infinity            0
+K4          35           Infinity            0
+K5          15           Infinity            0
+K6          52           Infinity            0
+K7          42           Infinity            0
+K8          12           Infinity            0
+K9          20           Infinity            0
+;
+
+:  obtainable_maximum.body obtainable_maximum.ub obtainable_maximum.slack    :=
+R1            110                    150                     40
+R2            200                    200                      0
+;
+
+:  continuity continuity.down continuity.current continuity.up    :=
+P2      13           -26               0               40
+;
+
+:   requirement requirement.down requirement.current requirement.up    :=
+K1        78             0                24                64
+K10       30             0                40                80
+K2        81             4                30                70
+K3        33            14                40                80
+K4        37             9                35                75
+K5        41             0                15                55
+K6        93            26                52                92
+K7        49            16                42                82
+K8        41             0                12                52
+K9       126             0                20                60
+;
+
+# $3 = obtainable_maximum.current
+:  obtainable_maximum obtainable_maximum.down   $3  obtainable_maximum.up    :=
+R1           0                   110            150          1e+20
+R2          -1                   160            200            226
+;
+
+:     x.down x.current x.up    :=
+R1 P2    12      13      40
+R2 P2     4      12      13
+;
+
+:      y.down y.current   y.up     :=
+P2 K1     65      112     1e+20
+P2 K10    17      112     1e+20
+P2 K2    -13       68        84
+P2 K3    -13       20        96
+P2 K4     24       32     1e+20
+P2 K5    -13       28        96
+P2 K6    -13       80       131
+P2 K7    -13       36       132
+P2 K8    -13       28       138
+P2 K9    113      128     1e+20
+;
+
+:      z.down z.current   z.up     :=
+R1 K1      0       78       109
+R1 K10     0       30        73
+R1 K2     81      108     1e+20
+R1 K3     33      216     1e+20
+R1 K4     37      120     1e+20
+R1 K5     41      210     1e+20
+R1 K6     93      144     1e+20
+R1 K7     49      252     1e+20
+R1 K8     41      252     1e+20
+R1 K9      0      126       141
+R2 K1     77      108     1e+20
+R2 K10    29       72     1e+20
+R2 K2     80       96     1e+20
+R2 K3     32      108     1e+20
+R2 K4     -1       36        44
+R2 K5     40      108     1e+20
+R2 K6     92      180     1e+20
+R2 K7     48      144     1e+20
+R2 K8     40      150     1e+20
+R2 K9    125      162     1e+20
+;
+
+x.rc :=
+R1 P2   0
+R2 P2   0
+;
+
+y.rc :=
+P2 K1    47
+P2 K10   95
+P2 K2     0
+P2 K3     0
+P2 K4     8
+P2 K5     0
+P2 K6     0
+P2 K7     0
+P2 K8     0
+P2 K9    15
+;
+
+z.rc :=
+R1 K1      0
+R1 K10     0
+R1 K2     27
+R1 K3    183
+R1 K4     83
+R1 K5    169
+R1 K6     51
+R1 K7    203
+R1 K8    211
+R1 K9      0
+R2 K1     31
+R2 K10    43
+R2 K2     16
+R2 K3     76
+R2 K4      0
+R2 K5     68
+R2 K6     88
+R2 K7     96
+R2 K8    110
+R2 K9     37
+;
+

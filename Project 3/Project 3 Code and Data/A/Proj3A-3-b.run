@@ -1,0 +1,6 @@
+reset;
+model Proj3A-3-b.mod;
+data Proj3A-3-b.dat;
+option solver minos;
+solve;
+display revenue, Q, P > results3A-3b;	

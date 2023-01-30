@@ -1,0 +1,9 @@
+revenue = 396000
+
+Q [*] :=
+ General  44000
+Students  11000
+;
+
+P = 7.2
+

@@ -1,0 +1,30 @@
+# Run file for Part B Scenario 4
+reset;
+model PartB.mod;
+data PartB_S4.dat;
+option solver cplex;
+option presolve 0;
+solve;
+option cplex_options 'sensitivity';
+solve;
+display total_profit, x, y > PartB_S4_solution.txt;
+# Slack variables
+display max_purchase.body,max_purchase.ub,max_purchase.slack  > PartB_S4_solution.txt;
+display timecap.body,timecap.ub,timecap.slack  > PartB_S4_solution.txt;
+display continuity.body,continuity.ub,continuity.slack  > PartB_S4_solution.txt;
+display demand_req.body,demand_req.ub,demand_req.slack  > PartB_S4_solution.txt;
+display octane_comp.body,octane_comp.ub,octane_comp.slack  > PartB_S4_solution.txt;
+display sulfur_comp.body,sulfur_comp.ub,sulfur_comp.slack  > PartB_S4_solution.txt;
+# Shadow price
+display max_purchase,max_purchase.down,max_purchase.current,max_purchase.up  > PartB_S4_solution.txt;
+display timecap,timecap.down,timecap.current,timecap.up  > PartB_S4_solution.txt;
+display continuity,continuity.down,continuity.current,continuity.up  > PartB_S4_solution.txt;
+display demand_req,demand_req.down,demand_req.current,demand_req.up  > PartB_S4_solution.txt;
+display octane_comp,octane_comp.down,octane_comp.current,octane_comp.up  > PartB_S4_solution.txt;
+display sulfur_comp, sulfur_comp.down,sulfur_comp.current,sulfur_comp.up  > PartB_S4_solution.txt;
+#Allowable range
+display x.down,x.current,x.up  > PartB_S4_solution.txt;
+display y.down,y.current,y.up  > PartB_S4_solution.txt;
+#Reduced costs
+display x.rc  > PartB_S4_solution.txt;
+display y.rc  > PartB_S4_solution.txt;

@@ -1,0 +1,86 @@
+# Part B data
+set C := C1, C2, C2_new, C3, C4;
+set G := G1, G2, G3, G4, G5;
+set M := M1, M2, M3;
+
+param rev : 
+	G1		G2		G3 		G4		G5:=
+M1	75		75		75		85		90
+M2  75		80		85		90		92	
+M3  80		85		90		95		95	
+;
+
+
+param purch_cost :=
+C1 45
+C2 40
+C2_new 41
+C3 55
+C4 50
+;
+
+param prod_cost:=
+G1 6
+G2 6
+G3 5
+G4 7
+G5 8
+;
+
+param demand :
+	G1		G2		G3 		G4		G5:=
+M1	3000	3000	1500	2000	1000
+M2  2500	2000	1000	2000	1000
+M3  5000	4250	3000	4000	2000	
+;
+
+param cap := 
+C1 25000
+C2 15000
+C2_new 1900
+C3 1800
+C4 3200
+;
+
+param hours :=
+G1 0.01
+G2 0.01
+G3 0.01
+G4 0.02
+G5 0.02
+;
+
+param oct_crude :=
+C1 94
+C2 90
+C2_new 90
+C3 98
+C4 96
+;
+
+param sulfur_crude :=
+C1 0.01
+C2 0.02
+C2_new 0.02
+C3 0.001
+C4 0.003
+;
+
+param oct_gas :=
+G1 88
+G2 90
+G3 92
+G4 94
+G5 96
+;
+
+param sulfur_gas :=
+G1 0.02
+G2 0.015
+G3 0.012
+G4 0.008
+G5 0.005
+;
+
+
+

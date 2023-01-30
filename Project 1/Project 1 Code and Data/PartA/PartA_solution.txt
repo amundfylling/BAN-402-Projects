@@ -1,0 +1,30 @@
+total_cost = 2730.77
+
+x [*] :=
+F1   11.5385
+F2  119.231
+F3    0
+;
+
+:  restriction.body restriction.ub restriction.slack    :=
+P1         25           Infinity            0
+P2         35           Infinity            0
+;
+
+:  restriction restriction.down restriction.current restriction.up    :=
+P1    23.0769        7.77778             25               28
+P2    61.5385       31.25                35              112.5
+;
+
+:    x.down  x.current      x.up       :=
+F1   10          30         36
+F2   16.6667     20         25.3333
+F3   27.6923     40      1e+20
+;
+
+x.rc [*] :=
+F1   0
+F2   0
+F3  12.3077
+;
+

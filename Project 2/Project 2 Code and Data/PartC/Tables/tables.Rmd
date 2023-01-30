@@ -1,0 +1,122 @@
+---
+title: "MakeTablesPartB"
+author: "Håkon"
+date: "2022-09-21"
+output: html_document
+---
+
+```{r cars}
+# Clear environment
+rm(list = ls())
+
+# Libraries
+library(readxl)
+library(janitor)
+library(dplyr)
+library(stargazer)
+library(webshot2)
+library(kableExtra)
+library(flextable)
+library(officer)
+library(ftExtra)
+library(tibble)
+# Load data Part B
+cb <- as.data.frame(read_excel("PartC_table.xlsx", sheet = "TableB"))
+inflation <- as.data.frame(read_excel("PartC_table.xlsx", sheet = "Table2"))
+TableD1 <- as.data.frame(read_excel("PartC_table.xlsx", sheet = "TableD1"))
+TableD2 <- as.data.frame(read_excel("PartC_table.xlsx", sheet = "TableD2"))
+TableC2 <- as.data.frame(read_excel("PartC_table.xlsx", sheet = "TableC2"))
+adjuster <- function(x){
+  rownames(x) <- x[[1]]
+  x %>% 
+    select(-"...1")
+}
+
+cb <- adjuster(cb)
+inflation <- adjuster(inflation)
+# Distribution table
+cb %>% 
+  rownames_to_column("CDU/Time Period") %>% 
+  flextable() %>%
+   set_caption(
+     caption = "Mode Chosen and Capacity Used for the CDUs at Each Period", # Produces formatted caption text
+     style = "Table Caption"
+  ) %>%
+  bold(i = c(7), j = c(3:10), bold = TRUE, part = "body") %>% 
+  bold(i = c(8), j = c(3:14), bold = TRUE, part = "body") %>% 
+  colformat_md() %>% # Subscript/superscript works in flextable now!
+  theme_booktabs() %>% # The 3-part-table used in academics
+  align(align = "center", part = "all") %>% #Align everything to center
+  set_table_properties(layout = "autofit") %>% # Comfortable width/height every cell
+  hline(i = 2, j = c(2:14), border = fp_border(color = "gray"), part = "body") %>% 
+  hline(i = 6, j = c(2:14), border = fp_border(color = "gray"), part = "body") %>% 
+  save_as_image("dist.png", webshot = "webshot")
+  # compose(
+  #   part = "header",
+  #   value = as_paragraph(as_b("µ"), as_sup("blah"))
+inflation %>% 
+  rownames_to_column("CDU/Time Period") %>% 
+  flextable() %>%
+   set_caption(
+     caption = "Mode Chosen the CDUs at Each Period for Different Inflation Levels", # Produces formatted caption text
+     style = "Table Caption"
+  ) %>%
+  bold(i = c(1:8), j = c(2), bold = TRUE, part = "body") %>%
+  bold(i = c(1:2), j = c(11:14), bold = TRUE, part = "body") %>% 
+  bold(i = c(3:4), j = c(12:14), bold = TRUE, part = "body") %>% 
+  bold(i = c(8), j = c(13), bold = TRUE, part = "body") %>% 
+  colformat_md() %>% # Subscript/superscript works in flextable now!
+  theme_booktabs() %>% # The 3-part-table used in academics
+  align(align = "center", part = "all") %>% #Align everything to center
+  set_table_properties(layout = "autofit") %>% # Comfortable width/height every cell
+  hline(i = 4, j = c(1:14), border = fp_border(color = "gray"), part = "body") %>% 
+  save_as_image("inflation.png", webshot = "webshot")
+  # compose(
+  #   part = "header",
+  #   value = as_paragraph(as_b("µ"), as_sup("blah"))
+
+TableD1 %>% 
+  flextable() %>%
+   set_caption(
+     caption = "Optimization/Minimization Differences", # Produces formatted caption text
+     style = "Table Caption"
+  ) %>%
+  colformat_md() %>% # Subscript/superscript works in flextable now!
+  theme_booktabs() %>% # The 3-part-table used in academics
+  align(align = "center", part = "all") %>% #Align everything to center
+  set_table_properties(layout = "autofit") %>% # Comfortable width/height every cell
+  save_as_image("TableD1.png", webshot = "webshot")
+
+TableD2 %>% 
+  flextable() %>%
+   set_caption(
+     caption = "Days for Which the Car is Charged During Home Office", # Produces formatted caption text
+     style = "Table Caption"
+  ) %>%
+  colformat_md() %>% # Subscript/superscript works in flextable now!
+  theme_booktabs() %>% # The 3-part-table used in academics
+  align(align = "center", part = "all") %>% #Align everything to center
+  set_table_properties(layout = "autofit") %>% # Comfortable width/height every cell
+  save_as_image("TableD2.png", webshot = "webshot")
+
+TableC2 %>% 
+  flextable() %>%
+   set_caption(
+     caption = "Ending Inventory for Crudes, Components and Products", # Produces formatted caption text
+     style = "Table Caption"
+  ) %>%
+  colformat_md() %>% # Subscript/superscript works in flextable now!
+  theme_booktabs() %>% # The 3-part-table used in academics
+  align(align = "center", part = "header") %>% #Align everything to center
+  padding(i=c(2:3,6:10,13:16),j=(1), padding.left = 30) %>% 
+  padding(i=c(2:4,6:11,13:17),j=(2), padding.left = 30) %>% 
+  padding(i=c(13:16),j=c(3,4), padding.left = 30) %>% 
+  hline(i = 4, j = c(1:4), border = fp_border(color = "gray"), part = "body") %>%
+  hline(i = 11, j = c(1:4), border = fp_border(color = "gray"), part = "body") %>%
+  bold(i = c(4,11,17), j = c(1,2), bold = TRUE, part = "body") %>%
+  set_table_properties(layout = "autofit") %>%  #Comfortable width/height every cell
+  save_as_image("TableC2.png", webshot = "webshot")
+
+```
+
+

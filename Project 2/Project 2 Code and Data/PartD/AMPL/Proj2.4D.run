@@ -1,0 +1,12 @@
+reset;
+model Proj2.4D.mod;
+data Proj2.4D.dat;
+option solver gurobi;
+option gurobi_options 'outlev=1';
+option show_stats 1;
+solve;
+display sum{d in D, h in H: d>0 and h>0}x[d,h] > results4.txt;
+display cost, x, y, G, u, z, m, c, j, f > results4.txt;
+
+# The script takes some time to run. The first run took about and hour, but after
+# doing some minor changes the script took about 25 minutes to run. 

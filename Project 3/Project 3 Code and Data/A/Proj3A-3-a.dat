@@ -1,0 +1,15 @@
+# Project 3 Part A-3-a data file
+set I := Students, General, Seniors; # Segments
+
+param Cap := # Total amount of tickets available given venue capacity
+55000;
+
+param D :=  # Max demand/intercept (p = 0) for segment i
+Students 20000
+General  120000
+Seniors  15000;
+
+param S := # Slope for segment i (How much does the demand fall for a marginal increase in p)
+Students -1250
+General  -3000
+Seniors  -1400;

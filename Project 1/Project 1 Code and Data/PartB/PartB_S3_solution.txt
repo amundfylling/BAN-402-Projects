@@ -1,0 +1,93 @@
+total_profit = 1368690
+
+:           x        y      :=
+C1 G1     125         .
+C1 G2    4625         .
+C1 G3    8250         .
+C1 G4    6401.59      .
+C1 G5    1142.86      .
+C2 G1   10375         .
+C2 G2    4625         .
+C2 G3       0         .
+C2 G4       0         .
+C2 G5       0         .
+C3 G1       0         .
+C3 G2       0         .
+C3 G3       0         .
+C3 G4    2405.56      .
+C3 G5       0         .
+C4 G1       0         .
+C4 G2       0         .
+C4 G3       0         .
+C4 G4    -807.143     .
+C4 G5    2857.14      .
+G1 M1       .       3000
+G1 M2       .       2500
+G1 M3       .       5000
+G2 M1       .       3000
+G2 M2       .       2000
+G2 M3       .       4250
+G3 M1       .       1500
+G3 M2       .       1000
+G3 M3       .       5750
+G4 M1       .       2000
+G4 M2       .       2000
+G4 M3       .       4000
+G5 M1       .       1000
+G5 M2       .       1000
+G5 M3       .       2000
+;
+
+:  max_purchase.body max_purchase.ub max_purchase.slack    :=
+C1      20544.4            25000            4455.56
+C2      15000              15000               0
+C3       2405.56            1350           -1055.56
+C4       2050               2050               0
+;
+
+timecap.body = 520
+timecap.ub = 520
+timecap.slack = 0
+
+:  continuity.body continuity.ub continuity.slack    :=
+G1         0              0              0
+G2         0              0              0
+G3         0              0              0
+G4         0              0              0
+G5         0              0              0
+;
+
+:     demand_req.body demand_req.ub demand_req.slack    :=
+G1 M1       3000         Infinity             0
+G1 M2       2500         Infinity             0
+G1 M3       5000         Infinity             0
+G2 M1       3000         Infinity             0
+G2 M2       2000         Infinity             0
+G2 M3       4250         Infinity             0
+G3 M1       1500         Infinity             0
+G3 M2       1000         Infinity             0
+G3 M3       5750         Infinity          2750
+G4 M1       2000         Infinity             0
+G4 M2       2000         Infinity             0
+G4 M3       4000         Infinity             0
+G5 M1       1000         Infinity             0
+G5 M2       1000         Infinity             0
+G5 M3       2000         Infinity             0
+;
+
+:  octane_comp.body octane_comp.ub octane_comp.slack    :=
+G1      21500           Infinity        21500
+G2      18500           Infinity        18500
+G3      16500           Infinity        16500
+G4       8007.94        Infinity         8007.94
+G5      -2285.71        Infinity        -2285.71
+;
+
+:  sulfur_comp.body sulfur_comp.ub sulfur_comp.slack    :=
+G1    -1.25                0           1.25
+G2     0                   0           0
+G3   -16.5                 0          16.5
+G4    -7.10543e-15         0           7.10543e-15
+G5     0                   0           0
+;
+

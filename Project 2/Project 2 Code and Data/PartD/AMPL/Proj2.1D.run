@@ -1,0 +1,15 @@
+reset;
+model Proj2.1D.mod;
+data Proj2.1D.dat;
+option solver gurobi;
+solve;
+display sum{d in D, h in H: d>0 and h>0}x[d,h] > results1.txt; # Total kwh charged
+display cost, x, y, G > results1.txt;
+
+reset;
+model Proj2.1D_maximize.mod;
+data Proj2.1D.dat;
+option solver gurobi;
+solve;
+display sum{d in D, h in H: d>0 and h>0}x[d,h] > results1_maximize.txt; # Total kwh charged
+display cost, x, y, G > results1_maximize.txt;

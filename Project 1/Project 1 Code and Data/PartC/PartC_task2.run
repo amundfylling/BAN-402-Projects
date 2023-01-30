@@ -1,0 +1,26 @@
+# Run file for Part C task 2
+reset;
+model PartC.mod;
+data PartC_task2.dat;
+option solver cplex;
+option presolve 0;
+solve;
+option cplex_options 'sensitivity';
+solve;
+display total_cost, x, y, z > PartC__task2_solution.txt;
+# Slack variables
+display continuity.body,continuity.ub,continuity.slack  > PartC__task2_solution.txt;
+display requirement.body,requirement.ub,requirement.slack  > PartC__task2_solution.txt;
+display obtainable_maximum.body,obtainable_maximum.ub,obtainable_maximum.slack  > PartC__task2_solution.txt;
+# Shadow price
+display continuity,continuity.down,continuity.current,continuity.up  > PartC__task2_solution.txt;
+display requirement,requirement.down,requirement.current,requirement.up  > PartC__task2_solution.txt;
+display obtainable_maximum,obtainable_maximum.down,obtainable_maximum.current,obtainable_maximum.up  > PartC__task2_solution.txt;
+#Allowable range
+display x.down,x.current,x.up  > PartC__task2_solution.txt;
+display y.down,y.current,y.up  > PartC__task2_solution.txt;
+display z.down,z.current,z.up  > PartC__task2_solution.txt;
+#Reduced costs
+display x.rc  > PartC__task2_solution.txt;
+display y.rc  > PartC__task2_solution.txt;
+display z.rc  > PartC__task2_solution.txt;
